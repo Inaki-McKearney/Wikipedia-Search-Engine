@@ -1,0 +1,15 @@
+# FROM postgres:12.1-alpine
+FROM postgres:12.1-alpine
+
+ENV POSTGRES_USER inaki
+# ENV PGHOST localhost
+ENV POSTGRES_PASSWORD password
+ENV POSTGRES_DB wikidata
+# ENV PGPORT 5432
+
+# Custom initialization scripts
+COPY ./create_db.sh /docker-entrypoint-initdb.d/20-create_db.sh
+COPY schema.sql /schema.sql
+COPY data.sql /data.sql
+
+RUN chmod +x /docker-entrypoint-initdb.d/20-create_db.sh

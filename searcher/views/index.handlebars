@@ -1,0 +1,176 @@
+<div class="page-header">
+  <h1>QSE</h1>
+</div>
+
+<form class="input-group md-form form-sm form-1" method="GET">
+    <button class="input-group-text blue  mr-1" type="submit" id="basic-text1"><i class="fas fa-search text-white"
+        aria-hidden="true"></i></button>
+  <input class="form-control my-0 py-1" type="text" name="q" placeholder="Search..." aria-label="Search">
+</form>
+
+<br>
+<div class="card border-danger mb-12">
+  <div class="card-header"style="font-size: 2rem;">{{ad.content}}</div>
+  <div class="card-body">
+    <h6><i>Sponsored</i></h6>
+    <a class="card-title text-primary" href="{{ad.uri}}"><u>{{ad.uri}}</u></a>
+    {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+  </div>
+</div>
+
+{{#each results}}
+<br>
+<div class="card border-primary mb-12">
+  <div class="card-header"style="font-size: 2rem;">{{title}}</div>
+  <div class="card-body">
+    <a class="card-title text-primary" href="{{uri}}"><u>{{uri}}</u></a>
+    {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+  </div>
+</div>
+{{/each}}
+
+
+{{!-- <H3>Configuration</H3>
+<hr>
+
+<form method="post">
+
+  <div class="form-group row">
+    <label class="col-form-label col-sm-3" for="pubtatorPath">Path to Pubtator:</label>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" id="pubtatorPath" name="pubtatorPath" placeholder="Enter path" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-sm-3" for="outputPath">Path to Output:</label>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" id="outputPath" name="outputPath" placeholder="Enter path" required>
+    </div>
+  </div>
+  <br>
+
+  <div class="form-group row">
+    <label class="control-label col-sm-3" for="textSource">Text Source:</label>
+    <div>
+      <div class="radio">
+          <label><input type="radio" id="textSource" name="textSource" value=abstracts checked>Abstracts</label>
+      </div>
+      <div class="radio">
+          <label><input type="radio" id="textSource" name="textSource" value=FullText>Full Text</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-sm-3" for="target">Target:</label>
+    <div>
+      <div class="radio">
+          <label><input type="radio" name="target" value=gene checked>Gene</label>
+      </div>
+      <div class="radio">
+          <label><input type="radio" name="target" value=other>Other</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-sm-3" for="partialResults">Partial Results:</label>
+    <div>
+      <div class="radio">
+          <label><input type="radio" name="partialResults" value=1 checked>Yes</label>
+      </div>
+      <div class="radio">
+          <label><input type="radio" name="partialResults" value=0 other>No</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-sm-3" for="pathways">Pathways:</label>
+    <div>
+      <div class="checkbox">
+        <label><input name=reactome type="checkbox" value=reactome checked> Reactome - ReactomePA</label>
+      </div>
+      <div class="checkbox">
+        <label><input name=gPro type="checkbox" value=gPro checked> gPro - gprofiler(online)</label>
+        </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="form-group col-sm-3">
+      <label for="significanceLevel">Significance Level:</label>
+    </div>
+      <input type="number" class="form-control col-sm-2" id=significanceLevel name=significanceLevel value=0.05 id="significanceLevel" required>
+  </div>
+
+<br>
+<H3>Aliases</H3>
+<ul id="aliasList" style="padding:0;">
+  <li style="list-style:none">
+    <div>
+      <hr>
+      <div class="form-group row justify-content-between">
+        <input class="col-sm-10" style="border:none;font-size:x-large;" name="alias[]" placeholder="Alias" required>
+        <div class="col-sm-2">
+          <button type="button" class="close">&times;</button>
+          </div>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="query[]" name="query[]" placeholder="Query" required>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li style="list-style:none">
+    <div>
+      <hr>
+      <div class="form-group row justify-content-between">
+        <input class="col-sm-10" style="border:none;font-size:x-large;" name="alias[]" placeholder="Alias" required>
+        <div class="col-sm-2">
+          <button type="button" class="close">&times;</button>
+          </div>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="query[]" name="query[]" placeholder="Query" required>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<button type="button" class="btn btn-secondary" id="addMore">Add</button>
+<hr>
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button class="btn btn-primary">Execute</button>
+    </div>
+  </div>
+</form>
+
+
+  <script type="text/javascript">
+      $(function() {
+        $("#addMore").click(function(e) {
+          e.preventDefault();
+          $("#aliasList").append(
+            '<li style="list-style:none"> \
+              <div> \
+                <hr> \
+                <div class="form-group row justify-content-between"> \
+                  <input class="col-sm-10" style="border:none;font-size:x-large;" name="alias[]" placeholder="Alias" required> \
+                  <div class="col-sm-2"> \
+                    <button type="button" class="close">&times;</button> \
+                    </div> \
+                  <div class="col-sm-12"> \
+                    <input type="text" class="form-control" id="query[]" name="query[]" placeholder="Query" required> \
+                  </div> \
+                </div> \
+              </div> \
+            </li>'
+          );
+        });
+        $('#aliasList').on("click", ".close", function() {
+          $(this).parent('div').parent("div").parent("div").remove();
+        });
+      });
+  </script> --}}
