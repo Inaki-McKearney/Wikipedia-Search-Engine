@@ -1,6 +1,6 @@
 # Wikipedia Search Engine
 
-A scalable cloud-based search engine for Wikipedia.
+A scalable cloud-based search engine for Wikipedia, complete with (fictitious) advertisements.
 
 This is a basic web-application that was built with performance and scalability in mind.
 
@@ -43,7 +43,7 @@ In production, the containers were orchestrated by **Google Kubernetes Engine** 
 
 ### Search User Interface
 
-- Built with **Node** and **Express**
+- Built with **Node**, **Express** and **Bootstrap**
 - Connects to the database with environment variables so that connection settings can be established from the dockerfile
 - Simple algorithm returns the top 30 pages that have their ID listed in the inverted index for each of the search words
 - The page results are simply sorted by how many of the search words match the page's keywords
