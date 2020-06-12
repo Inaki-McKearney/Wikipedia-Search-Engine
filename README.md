@@ -49,4 +49,4 @@ In production, the containers were orchestrated by **Google Kubernetes Engine** 
 - The page results are simply sorted by how many of the search words match the page's keywords
 - The component only reads from the database and is completely stateless so as to support multiple search instances running at once, allowing for simultaneous searches at a large scale
 
-![User Interface](https://github.com/Inaki-McKearney/Wikipedia-Search-Engine/blob/master/UI.png?raw=true)
+![User Interface](https://github.com/Inaki-McKearney/Wikipedia-Search-Engine/blob/master/screenshots/UI.png?raw=true)
